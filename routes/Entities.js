@@ -41,18 +41,18 @@ Entity.findOne({
               let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY,{
                 expiresIn: '30m'
   })
-  res.json({token: token}) 
+  res.status(200).json({token: token}) 
   })
   .catch(err =>{
-    res.send('error: ' + err)
+    res.status(500).send('error: ' + err)
   })
   }else{
     //If the user is already in the database, this will be warning that the user will get.
-    res.json({error: "Entity already exists"})
+    res.status(405).json({error: "Entity already exists"})
   }
 })
   .catch(err =>{
-    res.send('error: ' + err)
+    res.status(500).send('error: ' + err)
   })
 })
 
@@ -71,13 +71,13 @@ entity.post('/loginEntity' , (req,res) =>{
       let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY, {
         expiresIn: 1440
     })
-    res.json({token: token})
+    res.status(200).json({token: token})
     }else {
-      res.send('Entity doesnt exist')
+      res.status(404).send('Entity doesnt exist')
     }
 })
   .catch(err => {
-    res.send('error:' + err)
+    res.status(500).send('error:' + err)
   })
 })
 
@@ -92,13 +92,13 @@ entity.get('/profileEntity', (req, res) =>{
   })
     .then(entity =>{
       if(entity) {
-        res.json(entity)
+        res.status(200).json(entity)
       }else{
-      res.send('Entity does not exist')
+      res.status(404).send('Entity does not exist')
       }
     })
       .catch(err => {
-      res.send('error:' + err)
+      res.status(500).send('error:' + err)
       })
 })
 

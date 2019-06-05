@@ -40,18 +40,18 @@ workers.post('/register', (req, res) =>{
           let token = jwt.sign(worker.dataValues, process.env.SECRET_KEY,{
            expiresIn: '30m'
           })
-          res.json({token: token})
+          res.status(200).json({token: token})
           })
             .catch(err =>{
-              res.send('error: ' + err)
+              res.status(500).send('error: ' + err)
             })
     }else{
       //If goes wrong, the user will receive this message.
-      res.json({error: "User already exists"})
+      res.status(405).json({error: "User already exists"})
     }
 })
   .catch(err =>{
-    res.send('error: ' + err)
+    res.status(500).send('error: ' + err)
   })
 })
 
@@ -70,10 +70,10 @@ workers.post('/login' , (req,res) =>{
       })
         res.json({token: token})
     }else {
-      res.send('user doensnt exist')
+      res.status(404).send('user dont exist')
     }
   }).catch(err => {
-      res.send('error:' + err)
+      res.status(500).send('error:' + err)
     })
 })
 
@@ -87,13 +87,13 @@ workers.get('/profile', (req, res) =>{
   })
   .then(worker =>{
     if(worker) {
-      res.json(worker)
+      res.status(200).json(worker)
     }else{
-      res.send('User does not exist')
+      res.status(404).send('User does not exist')
     }
   })
   .catch(err => {
-    res.send('error:' + err)
+    res.status(500).send('error:' + err)
   })
 })
 
@@ -101,7 +101,7 @@ workers.get('/profile', (req, res) =>{
 //GET ALL
   //Gets all informations about the worker including passwords. This is used for testing.  
 workers.get('/all', async (req,res) => {
-  res.send( await Worker.findAll())
+  res.status(200).send( await Worker.findAll())
   })
  
 module.exports = workers;
