@@ -1,19 +1,18 @@
 'use strict';
-
+//Create Evaluators
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('evaluators',{
-      id:{
+      id:
+      {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement:true,
-        primaryKey: true
-    
+        primaryKey: true   
       },
-    })
-  },
-
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTbale('evaluators');
+  })
+},
+down: (queryInterface, Sequelize) => {
+  return queryInterface.dropTbale('evaluators');
   }
 };

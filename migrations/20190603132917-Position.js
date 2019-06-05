@@ -1,25 +1,25 @@
 'use strict';
-
+//Create Position 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('position',{
-      id:{
+    id:
+      {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement:true,
-        primaryKey: true
-    
+        primaryKey: true 
       },
-      position_id:{
+    position_id:
+      {
         type: Sequelize.STRING,
         allowNull: false,
         references: {model: 'position', key: 'position_id'}
     
       },
-    })
-  },
-
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTbale('position');
+  })
+},
+down: (queryInterface, Sequelize) => {
+  return queryInterface.dropTbale('position');
   }
 };

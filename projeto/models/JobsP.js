@@ -1,32 +1,33 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../backend/app');
+//Defines Jobs_Preferences
 module.exports = sequelize.define('jobs_preferences', {
-  id:{
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    autoIncrement:true,
-    primaryKey: true
-
-  },
+  id:
+    {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      autoIncrement:true,
+      primaryKey: true
+    },
   fav_techs:
-  {
-    type:
-  Sequelize.STRING,
-  },
+    {
+      type:
+      Sequelize.STRING,
+    },
   disliked_techs:
-  {
-    type:
-    Sequelize.STRING,
-  },
+    {
+      type:
+      Sequelize.STRING,
+    },
   prefered_industries:
-  {
-    type:
-  Sequelize.STRING,
-  },
+    {
+      type:
+    Sequelize.STRING,
+    },
   unwanted_industries:
-  {
-    type:
-  Sequelize.STRING,
-  defaultValue: true
-  },
+    {
+      type:
+    Sequelize.STRING,
+    defaultValue: true
+    },
 })

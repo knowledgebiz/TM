@@ -1,19 +1,19 @@
 'use strict';
-
+//Create Teams
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('teams',{
-      id:{
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement:true,
-        primaryKey: true
+      id:
+        {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          autoIncrement:true,
+          primaryKey: true
     
-      },
+       },
     })
   },
-
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTbale('teams');
+down: (queryInterface, Sequelize) => {
+  return queryInterface.dropTbale('teams');
   }
 };

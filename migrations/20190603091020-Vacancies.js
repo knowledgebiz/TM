@@ -1,55 +1,54 @@
 'use strict';
-
+//Create Vacancies 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('vacancies',{
-      id:{
+    id:
+      {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement:true,
         primaryKey: true
-    
       },
-      title:
+    title:
       {
         type:
-      Sequelize.STRING,
-      allowNull: false,
+        Sequelize.STRING,
+        allowNull: false,
       },
-      description:
+    description:
       {
         type:
         Sequelize.STRING,
         allowNull: false
       },
-      remote:
+    remote:
       {
         type:
-      Sequelize.BOOLEAN,
-      allowNull: false
+        Sequelize.BOOLEAN,
+        allowNull: false
       },
-      active:
+    active:
       {
         type:
-      Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
+        Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
       },
-      createdAt:
+    createdAt:
       {
         type:
-      Sequelize.DATE,
-      allowNull: false
+        Sequelize.DATE,
+        allowNull: false
       },
-      updatedAt:
+    updatedAt:
       {
         type:
-      Sequelize.DATE
+        Sequelize.DATE
       }
-    })
-  },
-
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTbale('vacancies');
+})
+},
+down: (queryInterface, Sequelize) => {
+  return queryInterface.dropTbale('vacancies');
   }
 };

@@ -1,30 +1,30 @@
 'use strict';
-
+//Create CV
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('cv',{
-      id:{
+    id:
+      {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement:true,
         primaryKey: true
     
       },
-      createdAt:
+    createdAt:
       {
         type:
-      Sequelize.DATE,
-      allowNull: false,
+        Sequelize.DATE,
+        allowNull: false,
       },
-     cv:
+    cv:
       {
         type:
-      Sequelize.TEXT,
+        Sequelize.TEXT,
       },
-    })
-  },
-
-  down: (queryInterface, Sequelize) => {
+  })
+},
+down: (queryInterface, Sequelize) => {
   return queryInterface.dropTbale('cv');
   }
 };

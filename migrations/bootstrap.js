@@ -12,6 +12,7 @@ const teams = require('../projeto/models/Teams');
 const vacancies = require('../projeto/models/Vacancies');
 const workersInfo = require('../projeto/models/WorkersInformation');
 
+//Relations 
 entities.hasMany(workers, {as: 'Workers', foreignKey:'entities_id'})
 workers.belongsTo(entities, {as: 'Entity' , foreignKey:'entities_id'})
 teams.hasMany(workers, {as: 'Workers', foreignKey:'teams_id'})

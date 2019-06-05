@@ -11,7 +11,7 @@ workers.use(cors())
 
 //Register
 workers.post('/register', (req, res) =>{
-  console.log(req.body)
+  //Workers Data
   var workerData= {
     name : req.body.name,
     email : req.body.email,
@@ -24,31 +24,32 @@ workers.post('/register', (req, res) =>{
     teams_id: req.body.teams_id,
     experience_levels_id: req.body.experience_levels_id 
   }
-
+  //Makes a query where email = email
   Worker.findOne({
     where: {
-      email: req.body.email
+    email: req.body.email
     }
   })
   .then(worker =>{
+    //If successful, it will encrypt the worker data and send it to the BD.
     if(!worker){
       const hash = bcrypt.hashSync(workerData.password, 10)
-      workerData.password = hash
-      Worker.create(workerData)
-      .then(worker => {
-       let token = jwt.sign(worker.dataValues, process.env.SECRET_KEY,{
-         expiresIn: '30m'
-       })
-      res.json({token: token})
-      })
-      .catch(err =>{
-        res.send('error: ' + err)
-      })
-
-      }else{
-        res.json({error: "User already exists"})
-      }
-  })
+        workerData.password = hash
+        Worker.create(workerData)
+          .then(worker => {
+          let token = jwt.sign(worker.dataValues, process.env.SECRET_KEY,{
+           expiresIn: '30m'
+          })
+          res.json({token: token})
+          })
+            .catch(err =>{
+              res.send('error: ' + err)
+            })
+    }else{
+      //If goes wrong, the user will receive this message.
+      res.json({error: "User already exists"})
+    }
+})
   .catch(err =>{
     res.send('error: ' + err)
   })
@@ -56,28 +57,24 @@ workers.post('/register', (req, res) =>{
 
 //Login
 workers.post('/login' , (req,res) =>{
-  console.log(req.body.password)
-  console.log(req.body.email)
-  
-Worker.findOne({
-  where: {
-  email: req.body.email
-  }
-}).then(worker => {
-  if(bcrypt.compareSync(req.body.password, worker.password)) {
-    
-    let token = jwt.sign(worker.dataValues, process.env.SECRET_KEY, {
-      expiresIn: 1440
-    })
-    res.json({token: token})
 
-  }else {
-    res.send('user doensnt exist')
+  Worker.findOne({
+   where: {
+    email: req.body.email
   }
-}).catch(err => {
-  res.send('error:' + err)
 })
-
+  .then(worker => {
+    if(bcrypt.compareSync(req.body.password, worker.password)) { 
+      let token = jwt.sign(worker.dataValues, process.env.SECRET_KEY, {
+        expiresIn: 1440
+      })
+        res.json({token: token})
+    }else {
+      res.send('user doensnt exist')
+    }
+  }).catch(err => {
+      res.send('error:' + err)
+    })
 })
 
 //PROFILE
@@ -102,8 +99,9 @@ workers.get('/profile', (req, res) =>{
 
 
 //GET ALL
+  //Gets all informations about the worker including passwords. This is used for testing.  
 workers.get('/all', async (req,res) => {
-    res.send( await Workers.findAll())
+  res.send( await Workers.findAll())
   })
  
 module.exports = workers;

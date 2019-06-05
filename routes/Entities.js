@@ -10,46 +10,47 @@ process.env.SECRET_KEY = 'secret'
 entity.use(cors())
 
 //Register 
-
-
 entity.post('/registerEntity', (req, res) =>{
-    
-  var entityData= {
-    name : req.body.name,
-    logo : req.body.logo,
-    email: req.body.email,
-    password: req.body.password,
-    active: req.body.active,
-    description: req.body.description,
-    website_url: req.body.website_url,
-    entities_types_id: req.body.entities_types_id,
-  }
-  console.log(entityData)
-  Entity.findOne({
-      
-    where: {
-      email: req.body.email
-    }
-  })
+  //Data about Entity
+  var entityData  = {
+      name : req.body.name,
+      logo : req.body.logo,
+      email: req.body.email,
+      password: req.body.password,
+      active: req.body.active,
+      description: req.body.description,
+      website_url: req.body.website_url,
+      entities_types_id: req.body.entities_types_id,
+      }
+  //Searches for email = email
+Entity.findOne({
+      where: {
+        email: req.body.email
+      }
+    })
+  //After getting the email, this makes a verification 
   .then(entity =>{
+    //If successful, it encrypts the password given by the company.
     if(!entity){
       const hash = bcrypt.hashSync(entityData.password, 10)
-      entityData.password = hash
-      Entity.create(entityData)
-      .then(entity => {
-       let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY,{
-         expiresIn: '30m'
-       })
-      res.json({token: token})
-      })
-      .catch(err =>{
-        res.send('error: ' + err)
-      })
-
-      }else{
-        res.json({error: "User already exists"})
-      }
+        entityData.password = hash
+        /*At this point with all set and good, it will make a query to send all the data to the database, including 
+        the token!*/
+          Entity.create(entityData)
+            .then(entity => {
+              let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY,{
+                expiresIn: '30m'
   })
+  res.json({token: token}) 
+  })
+  .catch(err =>{
+    res.send('error: ' + err)
+  })
+  }else{
+    //If the user is already in the database, this will be warning that the user will get.
+    res.json({error: "Entity already exists"})
+  }
+})
   .catch(err =>{
     res.send('error: ' + err)
   })
@@ -57,54 +58,55 @@ entity.post('/registerEntity', (req, res) =>{
 
 //Login
 entity.post('/loginEntity' , (req,res) =>{
-  
-Entity.findOne({
-  where: {
-  email: req.body.email
-  }
-}).then(entity => {
-  if(bcrypt.compareSync(req.body.password, entity.password)) {
-    
-    let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY, {
-      expiresIn: 1440
-    })
-    res.json({token: token})
-
-  }else {
-    res.send('user doensnt exist')
-  }
-}).catch(err => {
-  res.send('error:' + err)
-})
-
-})
-
-//PROFILE 
-
-entity.get('/profileEntity', (req, res) =>{
-  const decoded = jwt.verify(req.headers[authorization], process.env.SECRET_KEY)
+ //Makes a query wich uses email = email 
   Entity.findOne({
     where: {
-      id: decoded.id
+    email: req.body.email
+  }
+})
+  .then(entity => {
+    /* If successful, it will verify if the password provided by the company is the same as the one inside the database.
+    If not goes down to User doesn't exist*/
+    if(bcrypt.compareSync(req.body.password, entity.password)) {
+      let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY, {
+        expiresIn: 1440
+    })
+    res.json({token: token})
+    }else {
+      res.send('Entity doesnt exist')
     }
-  })
-  .then(entity =>{
-    if(entity) {
-      res.json(entity)
-    }else{
-      res.send('User does not exist')
-    }
-  })
+})
   .catch(err => {
     res.send('error:' + err)
   })
 })
 
+//PROFILE 
+entity.get('/profileEntity', (req, res) =>{
+  //Simple Verification
+  const decoded = jwt.verify(req.headers[authorization], process.env.SECRET_KEY)
+  Entity.findOne({
+    where: {
+    id: decoded.id
+    }
+  })
+    .then(entity =>{
+      if(entity) {
+        res.json(entity)
+      }else{
+      res.send('Entity does not exist')
+      }
+    })
+      .catch(err => {
+      res.send('error:' + err)
+      })
+})
+
 
 //GET ALL
+  //Just get's all from DB including passwords etc(This is used for testing)
 entity.get('/allEntities', async (req,res) => {
-    res.send( await Entity.findAll())
+  res.send( await Entity.findAll() )
   })
- 
 
 module.exports = entity;

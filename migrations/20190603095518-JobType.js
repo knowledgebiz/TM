@@ -1,5 +1,5 @@
 'use strict';
-
+//Create Job_Type
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('job_type',{
