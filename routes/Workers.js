@@ -101,7 +101,7 @@ workers.get('/profile', (req, res) =>{
 //GET ALL
   //Gets all informations about the worker including passwords. This is used for testing.  
 workers.get('/all', async (req,res) => {
-  res.send( await Workers.findAll())
+  res.send( await Worker.findAll())
   })
  
 module.exports = workers;
