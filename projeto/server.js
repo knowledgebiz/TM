@@ -12,11 +12,14 @@ app.use(
   })
 )
 //Route for Workers
-const Workers = require('../routes/Workers');
-app.use('/api',Workers);
+const routes = require('../routes');
+//const Workers = require('../routes/Workers');
+//app.use('/api',Workers);
+app.use('/api',routes.workers);
 //Route for Entities
-const Entity = require('../routes/Entities');
-app.use('/api',Entity);
+//const Entity = require('../routes/Entities');
+//app.use('/api',Entity);
+app.use('/api',routes.entities)
 
 //Just to see if the server is running + Port
 app.listen(port, function(){
