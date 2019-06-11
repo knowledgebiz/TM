@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
-//Define Type
-module.exports = sequelize.define('type', {
+const db = require('../backend/app');
+//Defines Position
+module.exports = db.sequelize.define('positions', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -9,10 +9,12 @@ module.exports = sequelize.define('type', {
       autoIncrement:true,
       primaryKey: true
     },
-  type:
+  position:
     {
       type:
       Sequelize.STRING(),
-      references: {model: 'type', key: 'type_id'}
+      references: {model: 'position', key: 'position_id'}
     },
+  },{
+    timestamps: false
   })

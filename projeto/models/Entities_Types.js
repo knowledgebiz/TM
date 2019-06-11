@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //defines Entities_Types
-module.exports = sequelize.define('entities_types', {
+module.exports = db.sequelize.define('entities_types', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -15,4 +15,6 @@ module.exports = sequelize.define('entities_types', {
       Sequelize.STRING(7),
       allowNull: false,
   },
+},{
+  timestamps: false
 })

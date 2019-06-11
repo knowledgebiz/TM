@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //Defines Evaluators
-module.exports = sequelize.define('evaluators', {
+module.exports = db.sequelize.define('evaluators', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -9,4 +9,12 @@ module.exports = sequelize.define('evaluators', {
       autoIncrement:true,
       primaryKey: true
     },
+    workers_id:{
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {model: 'workers', key: 'workers_id'}
+    },
+  },{
+    timestamps: false
   })
+

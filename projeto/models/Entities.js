@@ -4,7 +4,7 @@ const db = require('../backend/app');
 module.exports = db.sequelize.define('entities', {
   id:
     {
-      type: Sequelize.INTEGER(3),
+      type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement:true,
       primaryKey: true
@@ -54,12 +54,14 @@ module.exports = db.sequelize.define('entities', {
     {
       type:
       Sequelize.DATE,
+
      allowNull: false
     },
   updatedAt:
     {
       type:
-      Sequelize.DATE
+      Sequelize.DATE,
+
     },
   entities_types_id:
     {
@@ -67,5 +69,8 @@ module.exports = db.sequelize.define('entities', {
       Sequelize.INTEGER,
       allowNull: false,
       references: {model: 'entities_types', key: 'entities_type_id'}
-   }
-})
+   },
+},{
+  timestamps: true
+});
+

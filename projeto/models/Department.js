@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //Defines Department
-module.exports = sequelize.define('department', {
+module.exports = db.sequelize.define('department', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -12,7 +12,15 @@ module.exports = sequelize.define('department', {
   department:
     {
       type:
-      Sequelize.STRING(),
+      Sequelize.STRING,
       references: {model: 'department', key: 'department_id'}
   },
+  active:{
+    type:
+    Sequelize.BOOLEAN,
+    defaultValue: true
+  }
+},{
+  timestamps: false
 })
+

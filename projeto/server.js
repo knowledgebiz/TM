@@ -13,13 +13,21 @@ app.use(
 )
 //Route for Workers
 const routes = require('../routes');
-//const Workers = require('../routes/Workers');
-//app.use('/api',Workers);
 app.use('/api',routes.workers);
-//Route for Entities
-//const Entity = require('../routes/Entities');
-//app.use('/api',Entity);
-app.use('/api',routes.entities)
+app.use('/api', routes.entities);
+app.use('/api',routes.department);
+app.use('/api',routes.vacancies)
+app.use('/api',routes.entitiesT)
+app.use('/api',routes.expL)
+app.use('/api',routes.jobsP)
+app.use('/api',routes.jobsT)
+app.use('/api',routes.types)
+app.use('/api',routes.positions)
+app.use('/api',routes.roles)
+app.use('/api',routes.teams)
+app.use('/api',routes.evaluators)
+
+
 
 //Just to see if the server is running + Port
 app.listen(port, function(){

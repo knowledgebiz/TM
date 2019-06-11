@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //Defines CV
-module.exports = sequelize.define('cv', {
+module.exports = db.sequelize.define('cvs', {
   id:
     {
       type: Sequelize.INTEGER,

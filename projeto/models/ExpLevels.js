@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //Defines Experience_Level
-module.exports = sequelize.define('experience_levels', {
+module.exports = db.sequelize.define('experience_levels', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -13,7 +13,8 @@ module.exports = sequelize.define('experience_levels', {
   {
       type: Sequelize.INTEGER(9),
       allowNull: false,
-      autoIncrement:true,
       primaryKey: true
   }
+},{
+  timestamps: false
 })

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //Defines Job_Types
-module.exports = sequelize.define('job_type', {
+module.exports = db.sequelize.define('job_type', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -14,4 +14,7 @@ module.exports = sequelize.define('job_type', {
       type:
       Sequelize.STRING(45),
     },
+
+  },{
+    timestamps: false
   })

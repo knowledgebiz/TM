@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //Define Teams
-module.exports = sequelize.define('teams', {
+module.exports = db.sequelize.define('teams', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -9,4 +9,13 @@ module.exports = sequelize.define('teams', {
       autoIncrement:true,
       primaryKey: true
   },
+  entities_id:
+  {
+    type:
+    Sequelize.INTEGER,
+    allowNull: false,
+    references: {model: 'entities', key: 'entities_id'}
+  }
+},{
+  timestamps: false
 })

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../backend/app');
+const db = require('../backend/app');
 //Define Role
-module.exports = sequelize.define('roles', {
+module.exports = db.sequelize.define('roles', {
   id:
     {
       type: Sequelize.INTEGER,
@@ -14,4 +14,6 @@ module.exports = sequelize.define('roles', {
       type:
       Sequelize.STRING(70),
     },
+  },{
+    timestamps: false
   })

@@ -2,16 +2,20 @@ const Entity = require('../models/Entities')
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const async = require('async')
+const Sequelize = require('sequelize')
+const op = Sequelize.Op
 process.env.SECRET_KEY = 'secret'
 module.exports = {
 
-update : async(req,res) => {
-    if (req.body.name && req.body.email )
+update : async (req,res) => {
+    if (req.body.name && req.body.email)
       {
         console.log('query', req.query);
         console.log('---' , req.body)
         console.log('params', req.params);
-        Entity.update({name: req.body.name ,  email: req.body.email
+        Entity.update({name: req.body.name ,  email: req.body.email, active: req.body.active,
+        logo: req.body.logo, password: req.body.password, description: req.body.description,
+        website_url: req.body.website_url, entities_types_id: req.body.entities_types_id
         }
         , ({ where: { id: req.body.id } }))
 
@@ -21,8 +25,8 @@ update : async(req,res) => {
       }else{
         res.status(422).send('Field is missing')
       }
-
     },
+
 entAll: async (req,res) => {
       res.send( await Entity.findAll() )
       },
@@ -96,5 +100,34 @@ login: (req,res) =>{
        .catch(err => {
          res.status(500).send('error:' + err)
        })
-     }
+     },
+  profile: (req, res) =>{
+  //Simple Verification
+  const decoded = jwt.verify(req.headers[authorization], process.env.SECRET_KEY)
+  Entity.findOne({
+    where: {
+    id: decoded.id
     }
+  })
+    .then(entity =>{
+      if(entity) {
+        res.status(200).json(entity)
+      }else{
+      res.status(404).send('Entity does not exist')
+      }
+    })
+      .catch(err => {
+      res.status(500).send('error:' + err)
+      })
+    },
+    delete : async (req,res) => {
+if( await Entity.findOne({ where: { [op.and]: [{id: req.body.id}]}})  !=null ){
+     Entity.update({active: req.body.active}
+    , ({ where: { id: req.body.id } }))
+    res.status(200).json(req.body)
+    console.log(req.query)
+}else{
+ res.status(404).send('Not Found')
+      }
+    }
+  }
