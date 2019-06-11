@@ -73,7 +73,12 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {model: 'experience_levels', key: 'experience_levels_id'}
-    },  
+    }, 
+    entities_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {model: 'entities', key: 'entities_id'}
+    }, 
 })
     },
 down: (queryInterface, Sequelize) => {

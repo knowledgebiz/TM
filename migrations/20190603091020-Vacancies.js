@@ -45,7 +45,29 @@ module.exports = {
       {
         type:
         Sequelize.DATE
-      }
+      },
+      experience_levels_id: {
+        type:
+        Sequelize.INTEGER,
+        references: {model: 'experience_levels', key: 'experience_levels_id'}
+      },
+      job_type_id: {
+        type:
+        Sequelize.INTEGER,
+        references: {model: 'job_types', key: 'job_type_id'}
+      },
+      roles_id: {
+        type:
+        Sequelize.INTEGER,
+        references: {model: 'roles', key: 'roles_id'}
+      },
+      entities_id:
+    {
+      type:
+      Sequelize.INTEGER,
+      allowNull: false,
+      references: {model: 'entities', key: 'entities_id'}
+    },
 })
 },
 down: (queryInterface, Sequelize) => {

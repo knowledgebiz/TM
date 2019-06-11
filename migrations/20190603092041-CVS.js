@@ -1,25 +1,30 @@
 'use strict';
-//Create Position 
+//Create CV
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('position',{
+    return queryInterface.createTable('cvs',{
     id:
       {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement:true,
-        primaryKey: true 
-      },
-    position_id:
-      {
-        type: Sequelize.STRING,
-        allowNull: false,
-        references: {model: 'position', key: 'position_id'}
+        primaryKey: true
     
+      },
+    createdAt:
+      {
+        type:
+        Sequelize.DATE,
+        allowNull: false,
+      },
+    cv:
+      {
+        type:
+        Sequelize.TEXT,
       },
   })
 },
 down: (queryInterface, Sequelize) => {
-  return queryInterface.dropTbale('position');
+  return queryInterface.dropTbale('cvs');
   }
 };

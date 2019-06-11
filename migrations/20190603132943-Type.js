@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('type',{
+    return queryInterface.createTable('types',{
     id:
       {
         type: Sequelize.INTEGER,
@@ -15,11 +15,11 @@ module.exports = {
       {
         type: Sequelize.STRING,
         allowNull: false,
-        references: {model: 'type', key: 'type_id'}
+        references: {model: 'types', key: 'type_id'}
       },
   })
 },
 down: (queryInterface, Sequelize) => {
-  return queryInterface.dropTbale('type');
+  return queryInterface.dropTbale('types');
   }
 };

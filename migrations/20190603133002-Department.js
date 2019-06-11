@@ -2,7 +2,7 @@
 //Create Department
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('department',{
+    return queryInterface.createTable('departments',{
     id:
       {
         type: Sequelize.INTEGER,
@@ -14,11 +14,15 @@ module.exports = {
     department_id:
       {
         type: Sequelize.STRING,
-        references: {model: 'department', key: 'department_id'}
+        references: {model: 'departments', key: 'department_id'}
       },
+      active:{
+        type: Sequelize.BOOLEAN,
+        deafultValue: true
+      }
   })
 },
 down: (queryInterface, Sequelize) => {
-  return queryInterface.dropTbale('department');
+  return queryInterface.dropTbale('departments');
   }
 };

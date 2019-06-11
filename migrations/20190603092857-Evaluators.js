@@ -10,6 +10,11 @@ module.exports = {
         autoIncrement:true,
         primaryKey: true   
       },
+      workers_id:{
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {model: 'workers', key: 'workers_id'}
+      },
   })
 },
 down: (queryInterface, Sequelize) => {

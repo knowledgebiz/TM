@@ -9,8 +9,14 @@ module.exports = {
           allowNull: false,
           autoIncrement:true,
           primaryKey: true
-    
        },
+      entities_id:
+        {
+          type:
+          Sequelize.INTEGER,
+          allowNull: false,
+          references: {model: 'entities', key: 'entities_id'}
+        }
     })
   },
 down: (queryInterface, Sequelize) => {
