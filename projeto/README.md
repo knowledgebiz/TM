@@ -42,10 +42,10 @@ Role Id - Use Roles API.<br>
 API<br>
 Usage
 -----<br>
-3.1 <br>
+<br>
 ### Workers
 
-Get all users<br>
+Get all Workers<br>
 GET /api/workers HTTP/1.1<br>
 Accept: application/json<br>
 
@@ -62,55 +62,55 @@ Transfer-Encondig: <br>
           result: "success",
           documents: [
           {<
-              "id": 1,
-              "name": "Geremias",
-              "email": "geremias@gmail.com",
-              "password": "23434jHkikçklk", (only for test proposes)
-              "active": 1,
-              "createdAt": "2019-06-11 15:27:30",
-              "updatedAt": "2019-06-12 11:27:30",
-              "entities_id": 1,
-              "teams_id": 1,
-              "experience_levels_id": 1,
-              "department_id": 1,
-              "position_id": 1,
-              "type_id": 1
-          },{
-            "id": 2,
-              "name": "Malaquias",<
-              "email": "malaquias@gmail.com",
-              "password": "23434jHkikçklk", (only for test proposes)
-              "active": 1,
-              "createdAt": "2019-06-12 16:27:30",
-              "updatedAt": "2019-06-12 17:27:30",
-              "entities_id": 1,
-              "teams_id": 1,
-              "experience_levels_id": 1,
-              "department_id": 1,
-              "position_id": 1,
-              "type_id": 1
-          }]
-      }
-
-3.2 <br>
-Use this API to POST data.<br> (teams_id, entities_id ,createdAt and updatedAt are not required in the fields)<br>
-POST /api/workers<br>
-
-Need to send: <br>
-
-    {
-          "id": 2,
-            "name": "Malaquias",
-            "email": "malaquias@gmail.com",
-            "password": "Açucar", 
+            "id": 1,
+            "name": "Geremias",
+            "email": "geremias@gmail.com",
+            "password": "23434jHkikçklk", (only for test proposes)
             "active": 1,
+            "createdAt": "2019-06-11 15:27:30",
+            "updatedAt": "2019-06-12 11:27:30",
             "entities_id": 1,
             "teams_id": 1,
             "experience_levels_id": 1,
             "department_id": 1,
             "position_id": 1,
             "type_id": 1
-        }
+          },{
+            "id": 2,
+            "name": "Malaquias",<
+            "email": "malaquias@gmail.com",
+            "password": "23434jHkikçklk", (only for test proposes)
+            "active": 1,
+            "createdAt": "2019-06-12 16:27:30",
+            "updatedAt": "2019-06-12 17:27:30",
+            "entities_id": 1,
+            "teams_id": 1,
+            "experience_levels_id": 1,
+            "department_id": 1,
+            "position_id": 1,
+            "type_id": 1
+          }]
+      }
+
+ <br>
+Use this API to POST data.<br> (teams_id, entities_id ,createdAt and updatedAt are not required in the fields)<br>
+POST /api/workers<br>
+
+Need to send: <br>
+
+    {
+      "id": 2,
+      "name": "Malaquias",
+      "email": "malaquias@gmail.com",
+      "password": "Açucar", 
+      "active": 1,
+      "entities_id": 1,
+      "teams_id": 1,
+      "experience_levels_id": 1,
+      "department_id": 1,
+      "position_id": 1,
+      "type_id": 1
+    }
 
 Return Codes<br>
 TOKEN: "1231894647964971694169276ibdbh1db"<br>
@@ -118,16 +118,16 @@ Code	Description<br>
 200	Ok(Created)<br>
 405	User already exists<br>
 500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
-3.3 <br>
+<br>
 Updating worker fields<br>
 patch /api/workers HTTP/1.1<br>
 Accept: application/json<br>
 
     {
-          "id": 2,
-            "name": "Malaquias",
-            "email": "malaquiasG@gmail.com",
-        }
+      "id": 2,
+      "name": "Malaquias",
+      "email": "malaquiasG@gmail.com",
+    }
 
 <table>
 <tr>Response<br>
@@ -148,7 +148,7 @@ Code	Description<br>
 500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
 </th>
 </table>
-3.4 
+ 
 Use this API to delete(active = 0).<br>
 <br>
 patch /api/<br>
@@ -158,7 +158,7 @@ Return Payload<br>
 If success you will receive 200 code
 <br>
 <br>
-4.
+
 
 ### Entities
 
@@ -188,7 +188,7 @@ Transfer-Encondig: chunked<br>
           "createdAt": "2019-06-11 15:27:30",
           "updatedAt": "2019-06-12 11:27:30",
       },{
-        "id": 2,
+          "id": 2,
           "name": "know",
           "logo": "folder/folder/folder"
           "email": "know@gmail.com",
@@ -202,23 +202,23 @@ Transfer-Encondig: chunked<br>
       }]
     }
 
-4.1<br>
+<br>
 Use this API to POST data.<br> (description, webite_url , createdAt and updatedAt are not required)<br>
 Request<br>
 POST /api/entity<br>
 Need to send:<br> 
 
     {
-          "id": 1,
-            "name": "KnowledgeBiz",
-            "logo": "folder/folder/folder"
-            "email": "KnowledgeBiz@gmail.com",
-            "password": "yo", 
-            "active": 1,
-            "description": "ola", (optional)
-            "website_url" "Ola.com", (optional)
-            "entities_types_id": 1,
-        }
+      "id": 1,
+      "name": "KnowledgeBiz",
+      "logo": "folder/folder/folder"
+      "email": "KnowledgeBiz@gmail.com",
+      "password": "yo", 
+      "active": 1,
+      "description": "ola", (optional)
+      "website_url" "Ola.com", (optional)
+      "entities_types_id": 1,
+    }
 
 Return Codes<br>
 TOKEN: "1231894647964971694169276ibdbh1db"<br>
@@ -233,10 +233,10 @@ HTTP/1.1<br>
 Accept: application/json<br>
 
     {
-          "id": 2,
-            "name": "knowledgebizzz",
-            "email": "knowledgebizzz@gmail.com",
-        }
+        "id": 2,
+        "name": "knowledgebizzz",
+        "email": "knowledgebizzz@gmail.com",
+    }
 
 Response<br>
 HTTP/1.1 200 OK<br>
@@ -251,7 +251,7 @@ Code	Description<br>
 404 "Entity does not exist"<br>
 422 "Field is missing"<br>
 500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
-4.3<br>
+<br>
 Use this API to delete(active = 0).<br>
 Request<br>
 patch /api/entity<br>
@@ -259,11 +259,84 @@ query params: id and active = 0<br>
 id && active	required<br>
 Return Payload<br>
 If success you will receive 200 code<br>
-5.
+
+### EntitiesTypes
+
+Get all EntitiesTypes<br>
+GET /api/entities HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "type": "privada",
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/entities<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+            "type": "private",
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+405	"Type already exists"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+Updating department fields<br>
+patch /api/entities HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 2,
+      "type": "public",
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+404 "Type does not exist"<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+<br>
+Use this API to delete.<br>
+Request<br>
+delete /api/entities<br>
+query params: id <br>
+id Required<br>
+Return Payload<br>
+If success you will receive 200 code<br>
 ### Department 
 
 Get all departments<br>
-GET /api/depart HTTP/1.<br
+GET /api/depart HTTP/1.<br>
 Accept: application/json<br>
 HTTP/1.1 200 OK<br>
 Content-type: application/json<br>
@@ -285,40 +358,35 @@ Transfer-Encondig: chunked<br>
             "active": false
         }]
     }
-5.1<br>
-//
-Use this API to POST data.<br> (description, webite_url , createdAt and updatedAt are not required)<br>
+
+<br>
+
+Use this API to POST data.<br> (createdAt, updatedAt and active)<br>
 Request<br>
-POST /api/entity<br>
+POST /api/depart<br>
 Need to send:<br>
 
-    {
-          "id": 1,
-            "name": "KnowledgeBiz",
-            "logo": "folder/folder/folder"
-            "email": "KnowledgeBiz@gmail.com",
-            "password": "yo", 
-            "active": 1,
-            "description": "ola", (optional)
-            "website_url" "Ola.com", (optional)
-            "entities_types_id": 1,
+     {
+        result: "success",
+        documents: [
+        {
+            "department": "Ola",
         }
+    }
 
 Return Codes<br>
-TOKEN: "1231894647964971694169276ibdbh1db"<br>
 Code	Description<br>
 200	Ok(Created)<br>
-405	"Entitiy already exists"<br>
+405	"Department already exists"<br>
 500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
-5.<br>
-Updating entity fields<br>
-patch /api/entities HTTP/1.1<br>
+<br>
+Updating department fields<br>
+patch /api/depart HTTP/1.1<br>
 Accept: application/json<br>
 
     {
       "id": 2,
-      "name": "knowledgebizzz",
-      "email": "knowledgebizzz@gmail.com",
+      "department": "Yoda",
     }
 
 Response<br>
@@ -331,15 +399,425 @@ Transfer-Encondig: chunked<br>
 Return Codes<br>
 Code	Description<br>
 200	Ok(Modified)<br>
-404 "Entity does not exist"<br>
 422 "Field is missing"<br>
 500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
-5.3<br>
+<br>
 <br>
 Use this API to delete(active = 0).<br>
 Request<br>
-patch /api/entity<br>
+patch /api/depart<br>
 query params: id and active = 0<br>
 id && active	Required<br>
 Return Payload<br>
 If success you will receive 200 code<br>
+### Evaluators
+
+Get all Evaluators<br>
+GET /api/eva HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "id_workers": 1,
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/eva<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+            "workers_id": 1,
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating evaluator fields<br>
+patch /api/eva HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 2,
+      "workers_id": 3,
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+<br>
+Use this API to delete<br>
+Request<br>
+delete /api/eva<br>
+query params: id <br>
+id Required<br>
+Return Payload<br>
+If success you will receive 200 code<br>
+### ExpLevel
+
+Get all Experience Levels<br>
+GET /api/exp HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "experience_levels": 1,
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/exp<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+            "experience_levels": 1,
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+405 "Level already exists"<br>
+<br>
+Updating experience_level fields<br>
+patch /api/exp HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 2,
+      "experience_levels": 3,
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+<br>
+Use this API to delete<br>
+Request<br>
+delete /api/exp<br>
+query params: id <br>
+id Required<br>
+Return Payload<br>
+If success you will receive 200 code<br>
+### JobsPreferences
+
+Get all Job Preferences<br>
+GET /api/jobsP HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "fav_techs": "Angular",
+            "disliked_techs": "Nodejs",
+            "prefered_industries": "KnowledgeBiz",
+            "unwanted_industries": "NULL",
+            "workers_id": 1,
+            "role_id": 1,
+            "experience_levels_id": 1,
+            "job_type_id": 1,
+            
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/jobsP<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+          "fav_techs": "Angular",(Optional)
+          "disliked_techs": "Nodejs",(Optional)
+          "prefered_industries": "KnowledgeBiz",(Optional)
+          "unwanted_industries": "NULL",(Optional)
+          "workers_id": 1,
+          "role_id": 1,
+          "experience_levels_id": 1,
+          "job_type_id": 1,
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating JobsPreferences fields<br>
+patch /api/jobsP HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 2,
+      "fav_techs": "Angular",
+      "disliked_techs": "Nodejs",
+      "prefered_industries": "KnowledgeBiz",
+      "unwanted_industries": "NULL",
+      "workers_id": 1,
+      "role_id": 1,
+      "experience_levels_id": 1,
+      "job_type_id": 1,
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+### JobsTypes
+
+Get all Job Types<br>
+GET /api/jobsT HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+          "id": 1,
+          "type": "programmer"
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/jobsP<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+          "type": "programmer"
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating Types<br>
+patch /api/types HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 2,
+      "type" "Web-Designer"
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+### Positions
+
+Get all Job Preferences<br>
+GET /api/position HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "position": "CEO",
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/position<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+          "position": "CEO"
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating Position<br>
+patch /api/position HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "position": "HRMANAGER",
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+### Roles
+
+Get all Roles<br>
+GET /api/roles HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "role": "admin",
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/roles<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+          "role": "admin"
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating Roles<br>
+patch /api/roles HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 1
+      "role": "Mod",
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+
