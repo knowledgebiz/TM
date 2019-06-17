@@ -21,11 +21,7 @@ update : async (req,res) => {
   }
 },
 
-entAll: async (req,res) => {
-  res.send( await Entity.findAll() )
-  },
-
-register:      (req, res) =>{
+register: (req, res) =>{
   //Data about Entity
   var entityData  = {
   id: req.body.id,
@@ -124,5 +120,9 @@ delete : async (req,res) => {
   }else{
   res.status(404).send('Not Found')
   }
-}
+},
+
+entAll: async (req,res) => {
+  res.send( await Entity.findAll() )
+  },
 }

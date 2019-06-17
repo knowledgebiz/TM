@@ -151,14 +151,13 @@ Code	Description<br>
  
 Use this API to delete(active = 0).<br>
 <br>
-patch /api/<br>
+patch /api/workers<br>
 query params: id and active = 0<br>
 id && active	Required<br>
 Return Payload<br>
 If success you will receive 200 code
 <br>
 <br>
-
 
 ### Entities
 
@@ -820,4 +819,228 @@ Code	Description<br>
 422 "Field is missing"<br>
 500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
 <br>
+### Teams
 
+Get all Teams<br>
+GET /api/teams HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "entities_id": 1,
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/teams<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+          "entities_id": 2
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating Teams<br>
+patch /api/teams HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 1,
+      "entities_id": 4
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+Use this API to delete<br>
+Request<br>
+delete /api/teams<br>
+query params: id <br>
+id Required<br>
+Return Payload<br>
+If success you will receive 200 code<br>
+### types
+
+Get all Types<br>
+GET /api/type HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "type": "HRMANAGER"
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/type<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+          "type": "EVALUATOR"
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating Teams<br>
+patch /api/type HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+      "id": 1,
+      "type": "EVALUATOR"
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+Use this API to delete<br>
+Request<br>
+delete /api/teams<br>
+query params: id <br>
+id Required<br>
+Return Payload<br>
+If success you will receive 200 code<br>
+404 not found<br>
+### Vacancies
+
+Get all Teams<br>
+GET /api/vacancies HTTP/1.<br>
+Accept: application/json<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Thursday, 13 June 2019 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+
+    {
+        result: "success",
+        documents: [
+        {
+            "id": 1,
+            "title": "Test",
+            "description": "Hi",
+            "remote": 1,
+            "experience_levels_id": 3,
+            "job_type_id": 2,
+            "roles_id": 2,
+            "entities_id": 1
+        }
+    }
+
+<br>
+
+Use this API to POST data.<br>
+Request<br>
+POST /api/vacancies<br>
+Need to send:<br>
+
+     {
+        result: "success",
+        documents: [
+        {
+          "title": "Test",
+          "description": "Hi",
+          "remote": 1,
+          "experience_levels_id": 3,
+          "job_type_id": 2,
+          "roles_id": 2,
+          "entities_id": 1
+        }
+    }
+
+Return Codes<br>
+Code	Description<br>
+200	Ok(Created)<br>
+<br>
+Updating Teams<br>
+patch /api/vacancies HTTP/1.1<br>
+Accept: application/json<br>
+
+    {
+            "title": "yo",
+            "description": "yoooo",
+            "remote": 1,
+            "experience_levels_id": 3,
+            "job_type_id": 2,
+            "roles_id": 2,
+            "entities_id": 1 4
+    }
+
+Response<br>
+HTTP/1.1 200 OK<br>
+Content-type: application/json<br>
+X-Powered-By: Express<br>
+Date: Tue, 29 Aug 2017 11:04:31 GMT<br>
+Connection: keep-alive<br>
+Transfer-Encondig: chunked<br>
+Return Codes<br>
+Code	Description<br>
+200	Ok(Modified)<br>
+422 "Field is missing"<br>
+500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
+<br>
+Use this API to delete(active = 0).<br>
+<br>
+patch /api/vacancies<br>
+query params: id and active = 0<br>
+id && active	Required<br>
+Return Payload<br>
+If success you will receive 200 code
