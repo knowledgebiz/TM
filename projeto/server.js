@@ -26,6 +26,7 @@ app.use('/api',routes.positions)
 app.use('/api',routes.roles)
 app.use('/api',routes.teams)
 app.use('/api',routes.evaluators)
+app.use('/api',routes.cv)
 
 
 

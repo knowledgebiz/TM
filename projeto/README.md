@@ -301,7 +301,7 @@ Code	Description<br>
 405	"Type already exists"<br>
 500	Internal Server Error - There was an unexpected error at some point during the processing of the request.<br>
 <br>
-Updating department fields<br>
+Updating entity fields<br>
 patch /api/entities HTTP/1.1<br>
 Accept: application/json<br>
 
