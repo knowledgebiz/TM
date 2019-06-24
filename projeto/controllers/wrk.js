@@ -17,7 +17,8 @@ var workerData= {
   position_id: req.body.position_id,
   department_id: req.body.department_id,
   teams_id: req.body.teams_id,
-  experience_levels_id: req.body.experience_levels_id
+  experience_levels_id: req.body.experience_levels_id,
+  exp: req.body.exp
   }
   //Makes a query where email = email
   Worker.findOne({
@@ -68,11 +69,12 @@ update : async (req,res) => {
   }
 },
 
-login: (req,res) =>{
+login:(req,res) =>{
   Worker.findOne({
   where: {
   email: req.body.email
   }
+
 })
   .then(worker => {
   if(bcrypt.compareSync(req.body.password, worker.password)) {
@@ -81,7 +83,7 @@ login: (req,res) =>{
   })
   res.json({token: token})
   }else {
-  res.status(404).send('user dont exist')
+  res.status(404).send('user doesnt exist')
   }
   })
   .catch(err => {
@@ -89,24 +91,24 @@ login: (req,res) =>{
   })
 },
 
-profile:  (req, res) =>{
-  const decoded = jwt.verify(req.headers[authorization], process.env.SECRET_KEY)
-  Worker.findOne({
-  where: {
-  id: decoded.id
-  }
-  })
-  .then(worker =>{
-  if(worker) {
-  res.status(200).json(worker)
-  }else{
-  res.status(404).send('User does not exist')
-  }
-})
-  .catch(err => {
-  res.status(500).send('error:' + err)
-  })
-},
+// profile:  (req, res) =>{
+//   const decoded = jwt.verify(req.headers[authorization], process.env.SECRET_KEY)
+//   Worker.findOne({
+//   where: {
+//   id: decoded.id
+//   }
+//   })
+//   .then(worker =>{
+//   if(worker) {
+//   res.status(200).json(worker)
+//   }else{
+//   res.status(404).send('User does not exist')
+//   }
+// })
+//   .catch(err => {
+//   res.status(500).send('error:' + err)
+//   })
+// },
 
 delete: async (req,res) => {
   if( await Worker.findOne({ where: { [op.and]: [{id: req.body.id}]}})  !=null ){

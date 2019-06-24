@@ -15,7 +15,7 @@ var evaData= {
 update : async (req,res) => {
   if (req.body.id)
   {
-  eva.update({ type: req.body.workers_id
+  eva.update({ workers_id: req.body.workers_id
   }
   , ({ where: { id: req.body.id } }))
   res.status(200).json(req.body)

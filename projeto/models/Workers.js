@@ -76,7 +76,10 @@ module.exports = db.sequelize.define('Workers',
     },
     entities_id: {
       type: Sequelize.INTEGER,
-      allowNull: false,
       references: {model: 'entities', key: 'entities_id'}
+    },
+    exp: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
     },
   })

@@ -1,32 +1,26 @@
 const assert = require('assert')
 const httpMocks = require('node-mocks-http')
-const routeHandler = require('../../routes/Entities')
+const routeHandler = require('../../routes/Evaluators')
 
-describe('Entity', () => {
-  it("Should return Entity 200 ", ()=>{
+describe('Evaluators', () => {
+
+  it("Should return evaluators 200", ()=>{
     const req = httpMocks.createRequest({
       method: "GET",
-      url: "/entity"
+      url: "/eva"
     })
     const res = httpMocks.createResponse()
     routeHandler(req,res)
     assert(res.statusCode == 200)
   })
 })
-describe('Entity', () => {
-  it("Should post entity 200 ", ()=>{
+describe('Evaluators', () => {
+  it("Should post evaluators  200 ", ()=>{
     const req = httpMocks.createRequest({
       method: "POST",
-      url: "/entity",
+      url: "/eva",
       body: {
-        id: 1,
-        name: "KnowledgeBiz",
-        logo: "folder/folder/folder",
-        email: "KnowledgeBiz@gmail.com",
-        password: "yo",
-        description: "ola",
-        website_url: "Ola.com",
-        entities_types_id: 1,
+        id_workers: 1,
       }
     })
     const res = httpMocks.createResponse()
@@ -36,15 +30,26 @@ describe('Entity', () => {
 
   })
 })
-describe('Entity', () => {
-  it("Should patch entity 200 ", ()=>{
+describe('Evaluators', () => {
+  it("Should patch evaluators 200 ", ()=>{
     const req = httpMocks.createRequest({
       method: "PATCH",
-      url: "/entity",
+      url: "/eva",
       body: {
-        name: "KnowledgeBiz",
-        email: "knowledgebiz@gmail.com"
+        id: 1,
+        id_workers: 2
       }
+    })
+    const res = httpMocks.createResponse()
+    routeHandler(req,res)
+    assert(res.statusCode == 200)
+  })
+})
+describe('Evaluators', () => {
+  it("Should delete evaluators 200 ", ()=>{
+    const req = httpMocks.createRequest({
+      method: "DELETE",
+      url: "/eva",
     })
     const res = httpMocks.createResponse()
     routeHandler(req,res)

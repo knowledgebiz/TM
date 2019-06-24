@@ -1,0 +1,27 @@
+.login-box{
+  width: 30%;
+  height: 75%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+top: 50%;
+position: absolute;
+transform: translate(-50%,-50%);
+box-sizing: border-box;
+margin-left: 50%;
+}
+.avatar{
+  width: 100px;
+ height: 100px;
+ border-radius: 50%;
+ position: absolute;
+ top: -50px;
+ left: calc(50% - 50px);
+}
+form{
+  padding: 40px;
+  max-width: 85%;
+  border-radius: 4px;
+  transition: .5s ease;
+  margin: auto;
+  margin-top: 50px;
+}
