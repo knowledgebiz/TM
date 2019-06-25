@@ -1,5 +1,6 @@
 <div class="login-box">
-<img src="../assets/avatar.png" class="avatar">
+login
+  <img src="../assets/avatar.png" class="avatar">
 
   <form (submit)="login()">
     <div class="form-group">
@@ -13,6 +14,8 @@
         [(ngModel)]="credentials.password" required>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+      <button class="btn btn-lg btn-primary btn-block"  [routerLink]="['/register']" routerLinkActive="router-link-active" >
+       Register
+      </button>
   </form>
-
 </div>

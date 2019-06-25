@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthenticationService } from './authentication.service';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -19,7 +20,8 @@ import { AuthenticationService } from './authentication.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

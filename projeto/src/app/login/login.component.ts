@@ -11,7 +11,6 @@ export class LoginComponent {
     id: 0,
   name: '',
   email: '',
-  password: '',
   active: false,
   entities_id: 0,
   teams_id: 0,
@@ -19,7 +18,6 @@ export class LoginComponent {
   department_id: 0,
   position_id: 0,
   type_id: 0,
-  exp: 0
    };
   constructor(private auth: AuthenticationService, private router: Router) { }
 login() {

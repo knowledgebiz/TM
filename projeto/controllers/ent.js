@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 const async = require('async')
 const Sequelize = require('sequelize')
 const op = Sequelize.Op
-process.env.SECRET_KEY = 'secret'
+//process.env.SECRET_KEY = 'secret'
 module.exports = {
 
 update : async (req,res) => {
@@ -84,6 +84,7 @@ login: (req,res) =>{
   })
   res.status(200).json({token: token})
   }else {
+    console.log(req.body)
   res.status(404).send('Entity doesnt exist')
   }
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService, workersDetails } from '../authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  Details: workersDetails;
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.auth.profile().subscribe(user => {
+    this.Details = user;
+    },
+      err => {
+        console.log(err);
+      }
+    );
+
   }
 
 }

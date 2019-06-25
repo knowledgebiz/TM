@@ -9,7 +9,6 @@ export interface workersDetails {
   id: number;
   name: string;
   email: string;
-  password: string;
   active: boolean;
   entities_id: number;
   teams_id: number;
@@ -30,7 +29,6 @@ export interface tokenPayLoad {
   id: number;
   name: string;
   email: string;
-  password: string;
   active: boolean;
   entities_id: number;
   teams_id: number;
@@ -38,7 +36,7 @@ export interface tokenPayLoad {
   department_id: number;
   position_id: number;
   type_id: number;
-  exp: number;
+
 }
 
 @Injectable()
@@ -100,9 +98,8 @@ export class AuthenticationService {
     return request;
   }
   public profile(): Observable<any> {
-    return this.http.get('api/workers', {
-    headers: {Authorization: `${this.getToken()}` }
-  });
+    return this.http.get('http://localhost:3000/api/workersP' , {
+      headers: {authorization: `${this.getToken()}`} });
 }
 public logout(): void {
   this.token = '';
