@@ -40,7 +40,7 @@ module.exports = {
                     name: worker.dataValues.name,
                     active: worker.dataValues.active
                   }
-                  console-debug('token payload', tokenPayload);
+                  console - debug('token payload', tokenPayload);
                   let token = jwt.sign(tokenPayload, process.env.SECRET_KEY || 'awesomesecret', {
                     expiresIn: '30m'
                   })
@@ -97,7 +97,7 @@ module.exports = {
             name: worker.dataValues.name,
             active: worker.dataValues.active
           }
-          let token = jwt.sign(tokenPayload, process.env.SECRET_KEY , {
+          let token = jwt.sign(tokenPayload, process.env.SECRET_KEY, {
             expiresIn: 1440
           })
           res.json({ token: token })
@@ -110,26 +110,26 @@ module.exports = {
       })
   },
 
-  profile:  (req, res) => {
-     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-     Worker.findOne({
-     where: {
-     id: decoded.id
-     }
-     })
-     .then(worker =>{
-     if(worker) {
-     res.status(200).json(worker)
-     }else{
-     res.status(404).send('User does not exist')
-     }
-   })
-     .catch(err => {
-     res.status(500).send('error:' + err)
-     console.log(authorization)
-    console.log(SECRET_KEY)
-     })
-   },
+  profile: (req, res) => {
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+    Worker.findOne({
+      where: {
+        id: decoded.id
+      }
+    })
+      .then(worker => {
+        if (worker) {
+          res.status(200).json(worker)
+        } else {
+          res.status(404).send('User does not exist')
+        }
+      })
+      .catch(err => {
+        res.status(500).send('error:' + err)
+        console.log(authorization)
+        console.log(SECRET_KEY)
+      })
+  },
 
   delete: async (req, res) => {
     if (await Worker.findOne({ where: { [op.and]: [{ id: req.body.id }] } }) != null) {
@@ -145,5 +145,8 @@ module.exports = {
     res.status(200).send(await Worker.findAll())
   }
 }
+
+//InnerJoins
+// const response = db.sequelize.query("select id from department as Department", {type: Sequelize.QueryTypes.SELECT})
 
 

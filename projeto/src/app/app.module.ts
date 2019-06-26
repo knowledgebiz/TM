@@ -13,7 +13,8 @@ import {RouterModule} from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
 import { AuthenticationService } from './authentication.service';
 import { RegisterComponent } from './register/register.component';
-
+import { DepartmentsComponent } from './departments/departments.component';
+import { DepartmentService } from './departments/Department.service';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    DepartmentsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     RouterModule,
   ],
-  providers: [AuthenticationService, AuthGuardService],
+  providers: [AuthenticationService, AuthGuardService, DepartmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

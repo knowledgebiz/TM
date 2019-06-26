@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 // tslint:disable-next-line: class-name
@@ -29,6 +29,7 @@ export interface tokenPayLoad {
   id: number;
   name: string;
   email: string;
+  password: string;
   active: boolean;
   entities_id: number;
   teams_id: number;
@@ -42,7 +43,7 @@ export interface tokenPayLoad {
 @Injectable()
 export class AuthenticationService {
   private token: string;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
   private saveToken(token: string): void {
     localStorage.setItem('userToken', token);
     this.token = token;
@@ -57,12 +58,12 @@ export class AuthenticationService {
     const token = this.getToken();
     let payLoad;
     if (token) {
-        payLoad = token.split('.') [1];
-        payLoad = window.atob(payLoad);
-        return JSON.parse(payLoad);
-      } else {
-        return null;
-      }
+      payLoad = token.split('.')[1];
+      payLoad = window.atob(payLoad);
+      return JSON.parse(payLoad);
+    } else {
+      return null;
+    }
   }
   public isLoggedIn() {
     const user = this.getUserDetails();
@@ -73,8 +74,8 @@ export class AuthenticationService {
     }
   }
 
-  public register( user: tokenPayLoad ): Observable<any> {
-    const base = this.http.post('register', user);
+  public register(user: tokenPayLoad): Observable<any> {
+    const base = this.http.post('http://localhost:3000/api/workersr', user);
     const request = base.pipe(
       map((data: tokenResponse) => {
         if (data.token) {
@@ -86,7 +87,7 @@ export class AuthenticationService {
     return request;
   }
   public login(user: tokenPayLoad): Observable<any> {
-    const base = this.http.post('http://localhost:3000/api/login', user);
+    const base = this.http.post('http://localhost:3000/api/workersl', user);
     const request = base.pipe(
       map((data: tokenResponse) => {
         if (data.token) {
@@ -98,12 +99,13 @@ export class AuthenticationService {
     return request;
   }
   public profile(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/workersP' , {
-      headers: {authorization: `${this.getToken()}`} });
-}
-public logout(): void {
-  this.token = '';
-  window.localStorage.removeItem('userToken');
-  this.router.navigateByUrl('/');
-}
+    return this.http.get('http://localhost:3000/api/workersp', {
+      headers: { authorization: `${this.getToken()}` }
+    });
+  }
+  public logout(): void {
+    this.token = '';
+    window.localStorage.removeItem('userToken');
+    this.router.navigateByUrl('/');
+  }
 }

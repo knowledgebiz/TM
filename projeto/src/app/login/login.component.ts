@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, ElementRef} from '@angular/core';
 import {AuthenticationService, tokenPayLoad} from '../authentication.service';
 import {Router} from '@angular/router';
 @Component({
@@ -11,6 +11,7 @@ export class LoginComponent {
     id: 0,
   name: '',
   email: '',
+  password: '',
   active: false,
   entities_id: 0,
   teams_id: 0,
@@ -19,7 +20,7 @@ export class LoginComponent {
   position_id: 0,
   type_id: 0,
    };
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  constructor(private auth: AuthenticationService, private router: Router, private elementRef: ElementRef) { }
 login() {
   this.auth.login(this.credentials).subscribe(
     () => {
@@ -30,4 +31,9 @@ login() {
     }
   );
 }
+// tslint:disable-next-line: use-life-cycle-interface
+ngAfterViewInit() {
+  this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'lightseagreen';
+}
+
 }

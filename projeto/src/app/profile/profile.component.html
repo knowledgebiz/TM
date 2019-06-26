@@ -1,5 +1,18 @@
+<div class="register-box">
+    <img src="../../assets/edit.png" class="edit">
+        <form>
+          <div class="form-group">
 
-    {{Details.email}}
+            <label for="name">Name</label>
+            <input type="name" class="form-control" name="name" placeholder="Jon snow"
+              [(ngModel)]="Details.name" required>
+          </div>
 
-    {{Details.name}}
-
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="Details.email"
+              required>
+          </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        </form>
+      </div>

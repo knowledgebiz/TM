@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { AuthenticationService, workersDetails } from '../authentication.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,7 @@ import { AuthenticationService, workersDetails } from '../authentication.service
 })
 export class ProfileComponent implements OnInit {
   Details: workersDetails;
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService, private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.auth.profile().subscribe(user => {
@@ -18,7 +19,9 @@ export class ProfileComponent implements OnInit {
         console.log(err);
       }
     );
-
   }
-
+// tslint:disable-next-line: use-life-cycle-interface
+  ngAfterViewInit() {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'lightseagreen';
+  }
 }

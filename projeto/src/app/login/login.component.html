@@ -1,21 +1,16 @@
 <div class="login-box">
-login
   <img src="../assets/avatar.png" class="avatar">
-
   <form (submit)="login()">
     <div class="form-group">
-      <label for="email" ></label>
-      <input type="email" class="form-control" name="email" placeholder="Email"
-      [(ngModel)]="credentials.email" required>
+      <label for="email"></label>
+      <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="credentials.email"
+        required>
     </div>
     <div class="form-group">
-        <label for="password" ></label>
-        <input type="password" class="form-control" name="password" placeholder="Password"
+      <label for="password"></label>
+      <input type="password" class="form-control" name="password" placeholder="Password"
         [(ngModel)]="credentials.password" required>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
-      <button class="btn btn-lg btn-primary btn-block"  [routerLink]="['/register']" routerLinkActive="router-link-active" >
-       Register
-      </button>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
   </form>
 </div>
