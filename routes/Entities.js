@@ -9,10 +9,10 @@ const controller = require('../projeto/controllers/ent.js');
 entity.post('/entity', controller.register)
 
 //Login
-entity.post('/entity', controller.login)
+entity.post('/entityL', controller.login)
 
 //PROFILE 
-entity.get('/entity',controller.profile)
+entity.get('/entityP',controller.profile)
 
 //Update Fields
 entity.patch('/entity', controller.update )

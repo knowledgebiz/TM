@@ -31,7 +31,6 @@ module.exports = {
           /** daleixo update */
           bcrypt.hash(workerData.password, 10, function (err, resultHash) {
             if (!err) {
-              console.info('Hash generated:', resultHash);
               workerData.password = resultHash;
               Worker.create(workerData)
                 .then(worker => {
@@ -40,7 +39,7 @@ module.exports = {
                     name: worker.dataValues.name,
                     active: worker.dataValues.active
                   }
-                  console - debug('token payload', tokenPayload);
+
                   let token = jwt.sign(tokenPayload, process.env.SECRET_KEY || 'awesomesecret', {
                     expiresIn: '30m'
                   })
@@ -50,7 +49,7 @@ module.exports = {
                   res.status(500).send('error: ' + err)
                 })
             } else {
-              console.error('Error while generating hash', err);
+
               res.status(500).send('Internal error');
             }
           })

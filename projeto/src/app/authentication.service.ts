@@ -12,7 +12,7 @@ export interface workersDetails {
   active: boolean;
   entities_id: number;
   teams_id: number;
-  experience_levels: number;
+  experience_levels_id: number;
   department_id: number;
   position_id: number;
   type_id: number;
@@ -33,7 +33,7 @@ export interface tokenPayLoad {
   active: boolean;
   entities_id: number;
   teams_id: number;
-  experience_levels: number;
+  experience_levels_id: number;
   department_id: number;
   position_id: number;
   type_id: number;

@@ -36,6 +36,11 @@ module.exports = {
       allowNull: false,
       defaultValue: true
     },
+    entities_id: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      references: {model: 'entities', key: 'entities_id'}
+    }, 
   createdAt:
     {
       type:
@@ -74,11 +79,7 @@ module.exports = {
       allowNull: false,
       references: {model: 'experience_levels', key: 'experience_levels_id'}
     }, 
-  entities_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {model: 'entities', key: 'entities_id'}
-    }, 
+ 
 })
     },
 down: (queryInterface, Sequelize) => {

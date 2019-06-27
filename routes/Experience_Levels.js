@@ -3,9 +3,9 @@ const expL = express.Router()
 const cors = require('cors')
 const controller = require('../projeto/controllers/expL.js');
 
-expL.post('/exp', controller.create)
-expL.patch('/exp', controller.update)
-expL.get('/exp', controller.expLAll)
-expL.delete('/exp', controller.delete)
+expL.post('/expc', controller.create)
+expL.patch('/expu', controller.update)
+expL.get('/expa', controller.expLAll)
+expL.delete('/expd', controller.delete)
 
 module.exports = expL;

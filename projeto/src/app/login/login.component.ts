@@ -15,7 +15,7 @@ export class LoginComponent {
   active: false,
   entities_id: 0,
   teams_id: 0,
-  experience_levels: 0,
+  experience_levels_id: 0,
   department_id: 0,
   position_id: 0,
   type_id: 0,

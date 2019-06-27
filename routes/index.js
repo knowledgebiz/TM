@@ -11,5 +11,6 @@ module.exports = {
     positions: require('./Positions'),
     roles: require('./Roles'),
     teams: require('./Teams'),
-    evaluators: require('./Evaluators')
+    evaluators: require('./Evaluators'),
+    cv: require('./CVS')
 }

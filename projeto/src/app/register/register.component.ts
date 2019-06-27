@@ -3,6 +3,10 @@ import { AuthenticationService, tokenPayLoad } from '../authentication.service';
 import { Router } from '@angular/router';
 import { Departments } from '../departments/departments';
 import { DepartmentService } from '../departments/Department.service';
+import {Exp} from '../experience-levels/exp';
+import {expService} from '../experience-levels/exp-service.service';
+import {Type} from '../type/type';
+import {TypeService} from '../type/type-service.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,6 +15,10 @@ import { DepartmentService } from '../departments/Department.service';
 export class RegisterComponent {
   deps: Departments[];
   dep: Departments;
+  exps: Exp[];
+  exp: Exp;
+  types: Type[];
+  type: Type;
 
   credentials: tokenPayLoad = {
     id: 0,
@@ -20,17 +28,19 @@ export class RegisterComponent {
     active: false,
     entities_id: 0,
     teams_id: 0,
-    experience_levels: 0,
+    experience_levels_id : 0,
     department_id: 0,
     position_id: 0,
     type_id: 0,
   };
   constructor(private auth: AuthenticationService, private router: Router, private elementRef: ElementRef,
-              private depaService: DepartmentService) { }
+              private depaService: DepartmentService, private expSer: expService, private typeser: TypeService) { }
 
 // tslint:disable-next-line: use-life-cycle-interface
   ngOnInit() {
     this.getDepart();
+    this.getExp();
+
   }
   register() {
     this.auth.register(this.credentials).subscribe(
@@ -38,15 +48,23 @@ export class RegisterComponent {
         this.router.navigateByUrl('/login');
       },
       err => {
-        console.error(err);
+        console.error(err)
       }
     );
   }
   getDepart(): void {
     // tslint:disable-next-line: no-shadowed-variable
     this.depaService.getDepartment().subscribe(Departments => this.deps = Departments);
-  }
 
+  }
+  getExp(): void {
+    // tslint:disable-next-line: no-shadowed-variable
+    this.expSer.getExp().subscribe(exp => this.exps = exp);
+  }
+  getType(): void {
+    // tslint:disable-next-line: no-shadowed-variable
+    this.typeser.getType().subscribe(type => this.types = type);
+  }
 
 
   // tslint:disable-next-line: use-life-cycle-interface

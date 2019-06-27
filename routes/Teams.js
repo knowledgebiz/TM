@@ -6,5 +6,6 @@ const controller = require('../projeto/controllers/teams.js');
 teams.post('/teams', controller.create)
 teams.patch('/teams', controller.update)
 teams.delete('/teams', controller.delete)
+teams.get('/teams', controller.teamsAll)
 
 module.exports = teams;

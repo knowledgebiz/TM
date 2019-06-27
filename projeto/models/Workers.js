@@ -35,6 +35,11 @@ module.exports = db.sequelize.define('Workers',
       allowNull: false,
       defaultValue: true
     },
+    entities_id: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      references: {model: 'entities', key: 'entities_id'}
+    },
   createdAt:
     {
       type:
@@ -74,8 +79,4 @@ module.exports = db.sequelize.define('Workers',
       allowNull: false,
       references: {model: 'experience_levels', key: 'experience_levels_id'}
     },
-    entities_id: {
-      type: Sequelize.INTEGER,
-      references: {model: 'entities', key: 'entities_id'}
-    }
   })

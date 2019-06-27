@@ -7,7 +7,7 @@ import { Department } from '../../../models/Department';
 
 @Injectable()
 export class DepartmentService {
-  private url = 'http://localhost:3000/api/depart';
+  private url = 'http://localhost:3000/api/departa';
   constructor(private http: HttpClient) {
   }
 

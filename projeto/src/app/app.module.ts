@@ -15,6 +15,11 @@ import { AuthenticationService } from './authentication.service';
 import { RegisterComponent } from './register/register.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { DepartmentService } from './departments/Department.service';
+import { expService } from './experience-levels/exp-service.service';
+import { ExperienceLevelsComponent } from './experience-levels/experience-levels.component';
+import { PositionsComponent } from './positions/positions.component';
+import { TypeComponent } from './type/type.component';
+import { TypeService } from './type/type-service.service';
 
 
 @NgModule({
@@ -23,7 +28,10 @@ import { DepartmentService } from './departments/Department.service';
     LoginComponent,
     ProfileComponent,
     RegisterComponent,
-    DepartmentsComponent
+    DepartmentsComponent,
+    ExperienceLevelsComponent,
+    PositionsComponent,
+    TypeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +48,8 @@ import { DepartmentService } from './departments/Department.service';
     FormsModule,
     RouterModule,
   ],
-  providers: [AuthenticationService, AuthGuardService, DepartmentService],
+  providers: [AuthenticationService, AuthGuardService, DepartmentService, expService,
+  TypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
