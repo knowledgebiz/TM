@@ -1,18 +1,15 @@
 <div class="register-box">
-    <img src="../../assets/edit.png" class="edit">
-        <form>
-          <div class="form-group">
+  <img src="../../assets/edit.png" class="edit">
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" name="name" placeholder="Jon snow" [(ngModel)]="Details.name" disabled>
+    </div>
 
-            <label for="name">Name</label>
-            <input type="name" class="form-control" name="name" placeholder="Jon snow"
-              [(ngModel)]="Details.name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="Details.email"
-              required>
-          </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-        </form>
-      </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="Details.email" disabled>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/edit', Details.id]">Edit</button>
+  </form>
+</div>

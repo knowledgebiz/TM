@@ -25,13 +25,9 @@ export class RegisterComponent {
     name: '',
     email: '',
     password: '',
-    active: false,
-    entities_id: 0,
-    teams_id: 0,
-    experience_levels_id : 0,
     department_id: 0,
-    position_id: 0,
-    type_id: 0,
+    experience_levels_id: 0 ,
+    active: true
   };
   constructor(private auth: AuthenticationService, private router: Router, private elementRef: ElementRef,
               private depaService: DepartmentService, private expSer: expService, private typeser: TypeService) { }
@@ -45,10 +41,10 @@ export class RegisterComponent {
   register() {
     this.auth.register(this.credentials).subscribe(
       () => {
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/profile');
       },
       err => {
-        console.error(err)
+        console.error(err);
       }
     );
   }

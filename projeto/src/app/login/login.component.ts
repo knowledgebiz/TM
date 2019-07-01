@@ -13,12 +13,8 @@ export class LoginComponent {
   email: '',
   password: '',
   active: false,
-  entities_id: 0,
-  teams_id: 0,
-  experience_levels_id: 0,
   department_id: 0,
-  position_id: 0,
-  type_id: 0,
+  experience_levels_id: 0 ,
    };
   constructor(private auth: AuthenticationService, private router: Router, private elementRef: ElementRef) { }
 login() {

@@ -65,7 +65,7 @@ module.exports = {
       })
   },
 
-  update: async (req, res) => {
+  update: (req, res) => {
     if (req.body.id) {
       Worker.update({
         name: req.body.name, email: req.body.email, active: req.body.active,
@@ -77,7 +77,7 @@ module.exports = {
         experience_levels_id: req.body.experience_levels_id
       }
         , ({ where: { id: req.body.id } }))
-      res.status(200).json(req.body)
+      res.status(200)
     } else {
       res.status(422).send('Field is missing')
     }

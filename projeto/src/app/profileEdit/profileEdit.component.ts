@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-profileedit',
+  templateUrl: './profileedit.component.html',
+  styleUrls: ['./profileedit.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileEditComponent implements OnInit {
   Details: workersDetails;
   credentials: tokenPayLoad = {
     id: 0,
@@ -17,20 +17,30 @@ export class ProfileComponent implements OnInit {
     password: '',
     active: false,
     department_id: 0,
-    experience_levels_id: 0 ,
+    experience_levels_id: 0,
   };
   constructor(private auth: AuthenticationService, private elementRef: ElementRef, private router: Router) { }
 
   ngOnInit() {
     this.auth.profile().subscribe(user => {
-    this.Details = user;
+      this.Details = user;
     },
       err => {
         console.log(err);
       }
     );
   }
-// tslint:disable-next-line: use-life-cycle-interface
+  edit() {
+    this.auth.edit(this.Details).subscribe(
+      () => {
+
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+  // tslint:disable-next-line: use-life-cycle-interface
   ngAfterViewInit() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'lightseagreen';
   }

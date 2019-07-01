@@ -14,12 +14,14 @@ import { AuthGuardService } from './auth-guard.service';
 import { AuthenticationService } from './authentication.service';
 import { RegisterComponent } from './register/register.component';
 import { DepartmentsComponent } from './departments/departments.component';
+import { ProfileEditComponent } from './profileEdit/profileEdit.component';
 import { DepartmentService } from './departments/Department.service';
 import { expService } from './experience-levels/exp-service.service';
 import { ExperienceLevelsComponent } from './experience-levels/experience-levels.component';
 import { PositionsComponent } from './positions/positions.component';
 import { TypeComponent } from './type/type.component';
 import { TypeService } from './type/type-service.service';
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { TypeService } from './type/type-service.service';
     DepartmentsComponent,
     ExperienceLevelsComponent,
     PositionsComponent,
-    TypeComponent
+    TypeComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ export interface workersDetails {
   id: number;
   name: string;
   email: string;
+  password: '';
   active: boolean;
   entities_id: number;
   teams_id: number;
@@ -18,7 +19,6 @@ export interface workersDetails {
   type_id: number;
   exp: number;
 }
-
 // tslint:disable-next-line: class-name
 interface tokenResponse {
   token: string;
@@ -31,13 +31,8 @@ export interface tokenPayLoad {
   email: string;
   password: string;
   active: boolean;
-  entities_id: number;
-  teams_id: number;
-  experience_levels_id: number;
   department_id: number;
-  position_id: number;
-  type_id: number;
-
+  experience_levels_id: number;
 }
 
 @Injectable()
@@ -98,6 +93,20 @@ export class AuthenticationService {
     );
     return request;
   }
+  public edit(user: workersDetails): Observable<any> {
+    const base = this.http.patch('http://localhost:3000/api/workersu/', user);
+    const request = base.pipe(
+      map((data: tokenResponse) => {
+        if (data.token) {
+          this.saveToken(data.token);
+        }
+        return data;
+      })
+    );
+    window.location.href = '/profile';
+    return request;
+  }
+
   public profile(): Observable<any> {
     return this.http.get('http://localhost:3000/api/workersp', {
       headers: { authorization: `${this.getToken()}` }

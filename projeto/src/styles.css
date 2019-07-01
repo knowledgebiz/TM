@@ -1,5 +1,4 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 body{
   font-family: sans-serif;
 }
