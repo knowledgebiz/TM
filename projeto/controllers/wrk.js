@@ -40,7 +40,7 @@ module.exports = {
                     active: worker.dataValues.active
                   }
 
-                  let token = jwt.sign(tokenPayload, process.env.SECRET_KEY || 'awesomesecret', {
+                  let token = jwt.sign(tokenPayload, process.env.SECRET_KEY, {
                     expiresIn: '30m'
                   })
                   res.status(200).json({ token: token })
@@ -101,7 +101,7 @@ module.exports = {
           })
           res.json({ token: token })
         } else {
-          res.status(404).send('user doesnt exist')
+          res.status(404).send('entity doesnt exist')
         }
       })
       .catch(err => {

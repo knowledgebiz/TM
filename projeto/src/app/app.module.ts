@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EntityProfileComponent } from './profileEntity/profile.component';
+import { EntityProfileEditComponent } from './profileEditEntity/profileEdit.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -21,6 +23,8 @@ import { ExperienceLevelsComponent } from './experience-levels/experience-levels
 import { PositionsComponent } from './positions/positions.component';
 import { TypeComponent } from './type/type.component';
 import { TypeService } from './type/type-service.service';
+import { EntityTypeComponent } from './entity-type/entity-type.component';
+import { entTypeService } from './entity-type/ent-type.service';
 
 
 
@@ -29,12 +33,15 @@ import { TypeService } from './type/type-service.service';
     AppComponent,
     LoginComponent,
     ProfileComponent,
+    EntityProfileComponent,
     RegisterComponent,
     DepartmentsComponent,
     ExperienceLevelsComponent,
     PositionsComponent,
     TypeComponent,
-    ProfileEditComponent
+    ProfileEditComponent,
+    EntityTypeComponent,
+    EntityProfileEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +59,7 @@ import { TypeService } from './type/type-service.service';
     RouterModule,
   ],
   providers: [AuthenticationService, AuthGuardService, DepartmentService, expService,
-  TypeService],
+  TypeService,entTypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

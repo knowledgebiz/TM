@@ -1,35 +1,84 @@
-<div class="register-box">
+<div class="register-box" *ngIf="userlogin">
   <img src="../assets/avatar.png" class="avatar">
-
   <form (submit)="register()">
     <div class="form-group">
+      Name:
       <label for="name"></label>
       <input type="name" class="form-control" name="name" placeholder="Jon snow" [(ngModel)]="credentials.name"
         required>
     </div>
     <div class="form-group">
+      Email:
       <label for="email"></label>
       <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="credentials.email"
         required>
     </div>
     <div class="form-group">
+      Password:
       <label for="password"></label>
       <input type="password" class="form-control" name="password" placeholder="Password"
         [(ngModel)]="credentials.password" required>
     </div>
-    <div>
-      <select [(ngModel)]="credentials.department_id" name="department_id">
+    <div class="form-group">
+      Department:
+      <select class="form-control" [(ngModel)]="credentials.department_id" name="department_id">
 <option *ngFor="let dep of deps" [value]="dep.id">{{dep.department}}</option>
       </select>
     </div>
-    <div>
-      <select [(ngModel)]="credentials.experience_levels_id" name="experience_level">
-<option *ngFor="let exp of exps" [value]="exp.id">{{exp.experience_level}}</option>
+    <div class="form-group">
+      Level of experience:
+      <select class="form-control" [(ngModel)]="credentials.experience_levels_id" name="experience_level">
+      <option *ngFor="let exp of exps" [value]="exp.id">{{exp.experience_level}}</option>
       </select>
-      <select [(ngModel)]="credentials.experience_levels_id" name="experience_level">
-        <option *ngFor="let exp of exps" [value]="exp.id">{{exp.experience_level}}</option>
-        </select>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
   </form>
+  <button class="btnent btn-lg btn-primary btn-block" (click)="showform()">Entity</button>
 </div>
+
+<!-- Company -->
+
+<div class="register-box-entity" *ngIf="entlogin">
+    <img src="../assets/avatar.png" class="avatar">
+    <form (submit)="registerEnt()">
+      <div class="form-group">
+        Name:
+        <label for="name"></label>
+        <input type="name" class="form-control" name="name" placeholder="Jon snow" [(ngModel)]="credentialsEntity.name"
+          required>
+      </div>
+      <div class="form-group">
+        Email:
+        <label for="email"></label>
+        <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="credentialsEntity.email"
+          required>
+      </div>
+      <div class="form-group">
+        Password:
+        <label for="password"></label>
+        <input type="password" class="form-control" name="password" placeholder="Password"
+          [(ngModel)]="credentialsEntity.password" required>
+      </div>
+      <div class="form-group">
+          Description:
+          <label for="description"></label>
+          <input type="description" class="form-control" name="description" placeholder="ex: We make tech for people"
+            [(ngModel)]="credentialsEntity.description" required>
+        </div>
+        <div class="form-group">
+            WebSite_URL:
+            <label for="website_url"></label>
+            <input type="website_url" class="form-control" name="website_url" placeholder="www.yourcomapany.com"
+              [(ngModel)]="credentialsEntity.website_url" required>
+          </div>
+      <div class="form-group">
+        Entity Type:
+        <select class="form-control" [(ngModel)]="credentialsEntity.entities_types_id" name="entities_types_id">
+  <option *ngFor="let entType of entTypes" [value]="entType.id">{{entType.type}}</option>
+        </select>
+      </div>
+      <button class="btnent btn-lg btn-primary btn-block" type="submit">Sign In</button>
+    </form>
+    <button class="btnEnt btn-lg btn-primary btn-block" (click)="showform()">Worker</button>
+  </div>
+

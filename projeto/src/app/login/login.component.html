@@ -1,16 +1,42 @@
-<div class="login-box">
+<div class="login-box" *ngIf="userLogin">
   <img src="../assets/avatar.png" class="avatar">
   <form (submit)="login()">
     <div class="form-group">
+        Name:
       <label for="email"></label>
-      <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="credentials.email"
+      <input type="email" class="form-control" name="email" placeholder="Roger@gmail.com"
+       [(ngModel)]="credentials.email"
         required>
     </div>
     <div class="form-group">
+      Password:
       <label for="password"></label>
-      <input type="password" class="form-control" name="password" placeholder="Password"
+      <input type="password" class="form-control" name="password"
         [(ngModel)]="credentials.password" required>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+
   </form>
+  <button class="btnEnt btn-lg btn-primary btn-block" (click)="toggleEditform()">Entity</button>
 </div>
+<!-- LoginCompany -->
+<div class="login-box" *ngIf="entLogin">
+  JSON | json
+    <img src="../assets/avatar.png" class="avatar">
+    <form (submit)="loginEnt()">
+      <div class="form-group">
+          Company Name:
+        <label for="email"></label>
+        <input type="email" class="form-control" name="email" placeholder="company@gmail.com" [(ngModel)]="credentialsEntity.email"
+          required>
+      </div>
+      <div class="form-group">
+        Password:
+        <label for="password"></label>
+        <input type="password" class="form-control" name="password"
+          [(ngModel)]="credentialsEntity.password" required>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+    </form>
+    <button class="btnEnt btn-lg btn-primary btn-block" (click)="toggleEditform()">Worker</button>
+  </div>

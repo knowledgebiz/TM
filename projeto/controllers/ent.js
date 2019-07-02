@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken")
 const async = require('async')
 const Sequelize = require('sequelize')
 const op = Sequelize.Op
-//process.env.SECRET_KEY = 'secret'
+process.env.SECRET_KEY = 'Blyat'
 module.exports = {
 
 update : async (req,res) => {
@@ -21,81 +21,94 @@ update : async (req,res) => {
   }
 },
 
-register: (req, res) =>{
-  //Data about Entity
-  var entityData  = {
-  id: req.body.id,
-  name : req.body.name,
-  logo : req.body.logo,
-  email: req.body.email,
-  password: req.body.password,
-  active: req.body.active,
-  description: req.body.description,
-  website_url: req.body.website_url,
-  entities_types_id: req.body.entities_types_id,
+register: (req, res) => {
+  //Workers Data
+  var entData = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    active: req.body.active,
+    description: req.body.description,
+    website_url: req.body.website_url,
+    entities_types_id: req.body.entities_types_id,
   }
-  //Searches for email = email
+  //Makes a query where email = email
   Entity.findOne({
-  where: {
-  email: req.body.email
-  }
-})
-  //After getting the email, this makes a verification
-  .then(entity =>{
-  //If successful, it encrypts the password given by the company.
-  if(!entity){
-  const hash = bcrypt.hashSync(entityData.password, 10)
-  entityData.password = hash
-  /*At this point with all set and good, it will make a query to send all the data to the database, including
-  the token!*/
-  Entity.create(entityData)
-  .then(entity => {
-  let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY,{
-  expiresIn: '30m'
-})
-  res.status(200).json({token: token})
-  })
-    .catch(err =>{
-    res.status(500).send('error: ' + err)
-    })
-    }else{
-    //If the user is already in the database, this will be warning that the user will get.
-    res.status(405).json({error: "Entity already exists"})
+    where: {
+      email: req.body.email
     }
-})
-  .catch(err =>{
-  res.status(500).send('error: ' + err)
-})
+  })
+    .then(ent => {
+      //If successful, it will encrypt the worker data and send it to the BD.
+      if (!ent) {
+        /** daleixo update */
+        bcrypt.hash(entData.password, 10, function (err, resultHash) {
+          if (!err) {
+            entData.password = resultHash;
+            Entity.create(entData)
+              .then(ent => {
+                let tokenPayloadEntity = {
+                  id: ent.dataValues.id,
+                  name: ent.dataValues.name,
+                  active: ent.dataValues.active
+                }
+
+                let token = jwt.sign(tokenPayloadEntity, process.env.SECRET_KEY, {
+                  expiresIn: '30m'
+                })
+                res.status(200).json({ token: token })
+              })
+              .catch(err => {
+                res.status(500).send('error: ' + err)
+              })
+          } else {
+
+            res.status(500).send('Internal error');
+          }
+        })
+        const hash = bcrypt.hashSync(entData.password, 10)
+
+      } else {
+        //If goes wrong, the user will receive this message.
+        res.status(405).json({ error: "Entity already exists" })
+      }
+    })
+    .catch(err => {
+      res.status(500).send('error: ' + err)
+    })
 },
 
-login: (req,res) =>{
-  //Makes a query wich uses email = email
+login: (req, res) => {
   Entity.findOne({
-  where: {
-  email: req.body.email
-  }
-})
-  .then(entity => {
-  /* If successful, it will verify if the password provided by the company is the same as the one inside the database.
-  If not goes down to Entity doesn't exist*/
-  if(bcrypt.compareSync(req.body.password, entity.password)) {
-  let token = jwt.sign(entity.dataValues, process.env.SECRET_KEY, {
-  expiresIn: 1440
+    where: {
+      email: req.body.email
+    }
   })
-  res.status(200).json({token: token})
-  }else {
-    console.log(req.body)
-  res.status(404).send('Entity doesnt exist')
-  }
-})
-  .catch(err => {
-  res.status(500).send('error:' + err)
-  })
+    .then(ent => {
+      if (bcrypt.compareSync(req.body.password, ent.dataValues.password)) {
+        let tokenPayload = {
+          id: ent.dataValues.id,
+          name: ent.dataValues.name,
+          active: ent.dataValues.active,
+          description: ent.dataValues.description,
+          entities_types_id: ent.dataValues.entities_types_id
+        }
+        let token = jwt.sign(tokenPayload, process.env.SECRET_KEY, {
+          expiresIn: 1440
+        })
+        res.json({ token: token })
+      } else {
+        res.status(404).send('user doesnt exist')
+      }
+    })
+    .catch(err => {
+      res.status(500).send('error:' + err)
+    })
 },
 
 profile: (req, res) =>{
   //Simple Verification
-  const decoded = jwt.verify(req.headers[authorization], process.env.SECRET_KEY)
+  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
   Entity.findOne({
   where: {
   id: decoded.id

@@ -6,21 +6,21 @@ const controller = require('../projeto/controllers/ent.js');
 
 
 //Register 
-entity.post('/entity', controller.register)
+entity.post('/entityr', controller.register)
 
 //Login
-entity.post('/entityL', controller.login)
+entity.post('/entityl', controller.login)
 
 //PROFILE 
-entity.get('/entityP',controller.profile)
+entity.get('/entityp',controller.profile)
 
 //Update Fields
-entity.patch('/entity', controller.update )
+entity.patch('/entityu', controller.update )
 
-entity.post('/entity', controller.delete)
+entity.post('/entityd', controller.delete)
  
 //GET ALL
   //Just get's all from DB including passwords etc(This is used for testing)
-entity.get('/entity', controller.entAll)
+entity.get('/entitya', controller.entAll)
 
 module.exports = entity;
