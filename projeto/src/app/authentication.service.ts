@@ -37,24 +37,23 @@ interface tokenResponse {
 }
 // tslint:disable-next-line: class-name
 interface tokenEntResponse {
-  entToken: string;
+  token: string;
 }
 
 // tslint:disable-next-line: class-name
 export interface tokenPayLoad {
   id: number;
   name: string;
-  password: string;
   email: string;
   active: boolean;
   department_id: number;
   experience_levels_id: number;
 }
+// tslint:disable-next-line: class-name
 export interface tokenPayLoadEntity {
   id: number;
   name: string;
   email: string;
-  password: string;
   active: boolean;
   description: string;
   website_url: string;
@@ -150,9 +149,9 @@ export class AuthenticationService {
 
 
 
-  private saveEntToken(token: string): void {
-    localStorage.setItem('entityToken', token);
-    this.entToken = token;
+  private saveEntToken(entToken: string): void {
+    localStorage.setItem('entityToken', entToken);
+    this.entToken = entToken;
   }
 
   private getEntToken(): string {
@@ -185,20 +184,20 @@ export class AuthenticationService {
     const base = this.http.post('http://localhost:3000/api/entityr', ent);
     const request = base.pipe(
       map((data: tokenEntResponse) => {
-        if (data.entToken) {
-          this.saveEntToken(data.entToken);
+        if (data.token) {
+          this.saveEntToken(data.token);
         }
         return data;
       })
     );
     return request;
   }
-  public loginEnt(ent: tokenPayLoadEntity): Observable<any> {
-    const base = this.http.post('http://localhost:3000/api/entityl', ent);
+  public loginEnt(user: tokenPayLoadEntity): Observable<any> {
+    const base = this.http.post('http://localhost:3000/api/entityl', user);
     const request = base.pipe(
       map((data: tokenEntResponse) => {
-        if (data.entToken) {
-          this.saveEntToken(data.entToken);
+        if (data.token) {
+          this.saveToken(data.token);
         }
         return data;
       })
@@ -210,8 +209,8 @@ export class AuthenticationService {
     const base = this.http.patch('http://localhost:3000/api/entityu/', ent);
     const request = base.pipe(
       map((data: tokenEntResponse) => {
-        if (data.entToken) {
-          this.saveEntToken(data.entToken);
+        if (data.token) {
+          this.saveEntToken(data.token);
         }
         return data;
       })

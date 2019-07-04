@@ -139,4 +139,9 @@ delete : async (req,res) => {
 entAll: async (req,res) => {
   res.send( await Entity.findAll() )
   },
+  entAllActiveDown: async (req,res) => {
+    res.send( await Entity.findAll({
+      where: active = true
+    }) )
+    },
 }

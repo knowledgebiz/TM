@@ -1,5 +1,5 @@
 import { Component, ElementRef} from '@angular/core';
-import {AuthenticationService, tokenPayLoad,tokenPayLoadEntity} from '../authentication.service';
+import {AuthenticationService, tokenPayLoad, tokenPayLoadEntity} from '../authentication.service';
 import {Router} from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -14,7 +14,6 @@ export class LoginComponent {
     id: 0,
   name: '',
   email: '',
-  password: '',
   active: false,
   department_id: 0,
   experience_levels_id: 0 ,
@@ -22,7 +21,6 @@ export class LoginComponent {
    credentialsEntity: tokenPayLoadEntity = {
     id: 0,
     name: '',
-    password: '',
     email: '',
     active: true,
     description: '',
@@ -51,7 +49,7 @@ loginEnt() {
   );
 }
 
-toggleEditform(){
+toggleEditform() {
 this.entLogin = !this.entLogin;
 this.userLogin = !this.userLogin;
 }

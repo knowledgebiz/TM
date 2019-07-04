@@ -9,7 +9,7 @@ import { EntityProfileEditComponent } from './profileEditEntity/profileEdit.comp
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
@@ -25,6 +25,10 @@ import { TypeComponent } from './type/type.component';
 import { TypeService } from './type/type-service.service';
 import { EntityTypeComponent } from './entity-type/entity-type.component';
 import { entTypeService } from './entity-type/ent-type.service';
+import { JwtInterceptor } from '../../jwt.interceptor';
+import { AdministrationComponent } from './administration/administration.component';
+import { AdminService } from './administration/admin.service';
+import { workersFilterPipe } from './administration/search.pipe';
 
 
 
@@ -42,6 +46,8 @@ import { entTypeService } from './entity-type/ent-type.service';
     ProfileEditComponent,
     EntityTypeComponent,
     EntityProfileEditComponent,
+    AdministrationComponent,
+    workersFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +65,7 @@ import { entTypeService } from './entity-type/ent-type.service';
     RouterModule,
   ],
   providers: [AuthenticationService, AuthGuardService, DepartmentService, expService,
-  TypeService,entTypeService],
+  TypeService, entTypeService,AdminService,  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

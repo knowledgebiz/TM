@@ -14,7 +14,6 @@ export class EntityProfileComponent implements OnInit {
     id: 0,
     name: '',
     email: '',
-    password: '',
     active: true,
     description: '',
     website_url: '',

@@ -14,7 +14,6 @@ export class ProfileComponent implements OnInit {
     id: 0,
     name: '',
     email: '',
-    password: '',
     active: false,
     department_id: 0,
     experience_levels_id: 0 ,

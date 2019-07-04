@@ -31,7 +31,6 @@ export class RegisterComponent {
     id: 0,
     name: '',
     email: '',
-    password: '',
     department_id: 0,
     experience_levels_id: 0 ,
     active: true
@@ -39,7 +38,6 @@ export class RegisterComponent {
   credentialsEntity: tokenPayLoadEntity = {
     id: 0,
     name: '',
-    password: '',
     email: '',
     active: true,
     description: '',
@@ -79,8 +77,7 @@ export class RegisterComponent {
   }
   getDepart(): void {
     // tslint:disable-next-line: no-shadowed-variable
-    this.depaService.getDepartment().subscribe(Departments => this.deps = Departments);
-
+    this.depaService.getDepartments().subscribe(Departments => this.deps = Departments);
   }
   getExp(): void {
     // tslint:disable-next-line: no-shadowed-variable

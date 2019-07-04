@@ -141,7 +141,9 @@ module.exports = {
   },
 
   workers: async (req, res) => {
-    res.status(200).send(await Worker.findAll())
+    res.status(200).send(await Worker.findAll({attributes: ['id', 'name', 'email','active','entities_id','teams_id','type_id',
+    'position_id','department_id','experience_levels_id']}))
+    where: {active = true}
   }
 }
 

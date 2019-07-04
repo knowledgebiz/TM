@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { AuthenticationService, EntityDetails,tokenPayLoadEntity } from '../authentication.service';
+import { AuthenticationService, EntityDetails, tokenPayLoadEntity } from '../authentication.service';
 import { Router } from '@angular/router';
 
 
@@ -14,11 +14,11 @@ export class EntityProfileEditComponent implements OnInit {
     id: 0,
     name: '',
     email: '',
-    password: '',
     active: true,
     description: '',
     website_url: '',
     entities_types_id: 0,
+
   };
   constructor(private auth: AuthenticationService, private elementRef: ElementRef, private router: Router) { }
 
