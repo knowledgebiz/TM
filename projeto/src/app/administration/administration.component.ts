@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { tokenPayLoad, workersDetails, AuthenticationService } from '../authentication.service';
 import { DepartmentService } from '../departments/Department.service';
 import { Departments } from '../departments/departments';
@@ -14,6 +14,7 @@ import { Entities } from './entities.class';
 export class AdministrationComponent implements OnInit {
   Details: workersDetails;
   deps: Departments[];
+  dep: Departments;
   ents: Entities[];
   ent: Entities;
   workers: Workers[];
@@ -21,7 +22,13 @@ export class AdministrationComponent implements OnInit {
   searchTerm: string;
 
   department: Departments;
-  constructor(private auth: AuthenticationService, private depaService: DepartmentService, private adm: AdminService) { }
+  constructor(private auth: AuthenticationService, private depaService: DepartmentService,
+              private adm: AdminService, private elementRef: ElementRef) {
+
+    }
+    ngAfterViewInit() {
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'lightblue';
+    }
 
   ngOnInit() {
     this.getDepart();
@@ -39,8 +46,8 @@ getEntities(): any {
   this.adm.getEntities().subscribe(ent => this.ents = ent);
 }
 Search() {
-  this.workers = this.workers.filter(res=> {
-    return res.name.toLocaleLowerCase().match(this.worker.name.toLocaleLowerCase())
-  })
+   return this.workers = this.workers.filter(res => {
+     res.name.toLocaleLowerCase().match(this.worker.name.toLocaleLowerCase());
+  });
 }
 }

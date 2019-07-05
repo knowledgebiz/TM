@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'edit/:id', component: ProfileEditComponent, canActivate: [AuthGuardService] },
-  {path: 'profileEnt', component: EntityProfileComponent, canActivate: [AuthGuardService] },
+  {path: 'profileEnt', component: EntityProfileComponent },
   { path: 'editEnt/:id', component: EntityProfileEditComponent, canActivate: [AuthGuardService] },
   { path: 'adm', component: AdministrationComponent},
 ];

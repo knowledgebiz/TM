@@ -37,7 +37,7 @@ interface tokenResponse {
 }
 // tslint:disable-next-line: class-name
 interface tokenEntResponse {
-  token: string;
+  entToken: string;
 }
 
 // tslint:disable-next-line: class-name
@@ -149,14 +149,14 @@ export class AuthenticationService {
 
 
 
-  private saveEntToken(entToken: string): void {
-    localStorage.setItem('entityToken', entToken);
-    this.entToken = entToken;
+  private saveEntToken(token: string): void {
+    localStorage.setItem('token', token);
+    this.token = token;
   }
 
   private getEntToken(): string {
-    if (!this.entToken) {
-      this.entToken = localStorage.getItem('entityToken');
+    if (!this.token) {
+      this.token = localStorage.getItem('token');
     }
     return this.entToken;
   }
@@ -196,8 +196,8 @@ export class AuthenticationService {
     const base = this.http.post('http://localhost:3000/api/entityl', user);
     const request = base.pipe(
       map((data: tokenEntResponse) => {
-        if (data.token) {
-          this.saveToken(data.token);
+        if (data.entToken) {
+          this.saveEntToken(data.entToken);
         }
         return data;
       })
@@ -209,8 +209,8 @@ export class AuthenticationService {
     const base = this.http.patch('http://localhost:3000/api/entityu/', ent);
     const request = base.pipe(
       map((data: tokenEntResponse) => {
-        if (data.token) {
-          this.saveEntToken(data.token);
+        if (data.entToken) {
+          this.saveEntToken(data.entToken);
         }
         return data;
       })
@@ -226,7 +226,7 @@ export class AuthenticationService {
   }
   public logoutEnt(): void {
     this.entToken = '';
-    window.localStorage.removeItem('entityToken');
-    this.router.navigateByUrl('/');
+    window.localStorage.removeItem('token');
+    window.location.href = '/';
   }
 }

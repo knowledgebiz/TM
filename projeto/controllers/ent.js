@@ -89,8 +89,10 @@ login: (req, res) => {
         let tokenPayload = {
           id: ent.dataValues.id,
           name: ent.dataValues.name,
+          email: ent.dataValues.email,
           active: ent.dataValues.active,
           description: ent.dataValues.description,
+          website_url:ent.dataValues.website_url,
           entities_types_id: ent.dataValues.entities_types_id
         }
         let token = jwt.sign(tokenPayload, process.env.SECRET_KEY, {
@@ -123,6 +125,7 @@ profile: (req, res) =>{
 })
   .catch(err => {
   res.status(500).send('error:' + err)
+
   })
 },
 
@@ -140,8 +143,7 @@ entAll: async (req,res) => {
   res.send( await Entity.findAll() )
   },
   entAllActiveDown: async (req,res) => {
-    res.send( await Entity.findAll({
-      where: active = true
+    res.send( await Entity.findAll({attributes: ['id', 'name', 'email','active','description','website_url','entities_types_id'], where: {active: true}
     }) )
     },
 }
